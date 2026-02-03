@@ -1,0 +1,60 @@
+/* CSS de la barra de navegación */
+#navBar{    
+    display: flex;
+    height: 60px;
+    background-color: withe;
+    justify-content: space-between;
+}
+
+#navBar #DVpaginas{
+    display: flex;
+}
+
+#navBar #DVpaginas >a{
+    text-decoration: none;
+    text-align: center;
+    padding: 20px;
+    font-family: 'Anton',sans-serif;
+    color: black;
+    position: relative;/*Necesario para posicionar el after*/
+}
+
+#navBar #DVpaginas > a::after{
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0px; /* Ajusta la posición del subrayado */
+  width: 0;
+  height: 3px; /* Grosor del subrayado */
+  background: black; /* Color del subrayado */
+  transition: width 0.3s ease; /* Animación de la línea */
+}
+
+#navBar #DVpaginas > a:hover::after{
+    width: 100%;
+}
+
+#IniSesion{
+background-color: rgb(47, 46, 46); /* Coincide con tu navbar, o usa #333 */
+    color: #ffffff;
+    border: 1px solid rgb(47, 46, 46); /* Borde igual al fondo para mantener dimensiones */
+    padding: 10px 24px; /* Buen espaciado interno */
+    
+    /* Tipografía */
+    font-family: sans-serif; /* O usa tu fuente 'Anton' si prefieres */
+    font-size: 14px;
+    font-weight: 600; /* Un poco de grosor para que se lea bien */
+    text-transform: uppercase; /* Da un aire más serio/estructurado */
+    letter-spacing: 1px; /* Espaciado entre letras para elegancia */
+    
+    /* Forma */
+    border-radius: 4px; /* Bordes ligeramente redondeados (no redondos del todo) */
+    cursor: pointer;
+    transition: all 0.3s ease; /* Suaviza el cambio de color al pasar el ratón */
+}
+
+#IniSesion :hover {
+    background-color: #ffffff;
+    color: rgb(47, 46, 46);
+    border: 1px solid rgb(47, 46, 46);
+}
