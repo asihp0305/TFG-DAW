@@ -1,8 +1,12 @@
+*{
+    background-color: rgba(231, 230, 230, 0.808);
+}
+
 /* CSS de la barra de navegación */
 #navBar{    
     display: flex;
     height: 60px;
-    background-color: withe;
+    background-color: rgba(231, 230, 230, 0.808);
     justify-content: space-between;
 }
 
@@ -53,8 +57,39 @@ background-color: rgb(47, 46, 46); /* Coincide con tu navbar, o usa #333 */
     transition: all 0.3s ease; /* Suaviza el cambio de color al pasar el ratón */
 }
 
-#IniSesion :hover {
+#IniSesion:hover {
     background-color: #ffffff;
     color: rgb(47, 46, 46);
     border: 1px solid rgb(47, 46, 46);
+}
+
+/* CSS de #contenido */
+
+#contenido{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    height: 1200px;
+}
+
+#contenido #imagenes_clinica >section{
+    display: flex;
+    width: 600px;
+    height: 430px;
+}
+
+#contenido #imagenes_clinica >section >img{
+    width: 0px;
+    flex-grow: 1;
+    object-fit: cover;
+    opacity: .8;
+    transition: .5s ease;
+}
+
+#contenido  #imagenes_clinica > section >img:hover{
+    cursor: crosshair;
+    width: 300px;
+    opacity: 1;
+    filter: contrast(120%);
 }
