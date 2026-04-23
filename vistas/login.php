@@ -9,8 +9,8 @@
 
 <body>
     <div class="LogIn" id="log">
-        <form method="post" action="../index.php">
-            <h2></h2>
+        <form method="post" action="../perfil_usuario.php">
+            <h2>Bienvenid@ a Malpartida Dental</h2>
 
             <label
                 for="user">Usuario:</label>

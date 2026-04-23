@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/cssIndex.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <title>Document</title>
 </head>
 <body>
@@ -51,5 +52,39 @@
         </div>
 
     </div>
+
+    <div id="modalOverlay" class="modal-oculto">
+        <div id="modalLogin"></div>
+    </div>
 </body>
+<script>
+$(document).ready(function() {
+    // 1. Mostrar el modal al hacer clic en Iniciar Sesión
+    $('#IniSesion').click(function(e){
+        e.preventDefault(); // Evita recargas raras
+        
+        $.ajax({
+            type: 'POST', // En este caso podría ser GET, ya que solo pides la vista
+            url: 'vistas/login.php',
+            success: function(data){
+                // Metemos el formulario en la caja blanca
+                $('#modalLogin').html(data);
+                // Le quitamos la clase oculto y lo mostramos con una animación
+                $('#modalOverlay').removeClass('modal-oculto').hide().fadeIn(300);
+            }
+        });
+    });
+
+    // 2. Ocultar el modal al hacer clic FUERA de la caja blanca
+    $('#modalOverlay').click(function(e){
+        // Comprobamos que hemos hecho clic en el fondo (#modalOverlay) y no dentro del login
+        if(e.target.id === 'modalOverlay') {
+            $(this).fadeOut(300, function() {
+                $(this).addClass('modal-oculto');
+                $('#modalLogin').empty(); // Limpiamos el HTML para la próxima vez
+            });
+        }
+    });
+});
+</script>
 </html>
