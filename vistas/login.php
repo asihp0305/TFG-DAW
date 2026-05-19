@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -9,7 +9,7 @@
 
 <body>
     <div class="LogIn" id="log">
-        <form method="post" action="../perfil_usuario.php">
+        <form method="post" action="perfil_usuario.php">
             <h2>Bienvenid@ a Malpartida Dental</h2>
 
             <label for="user">Usuario:</label>

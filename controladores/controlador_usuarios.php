@@ -1,7 +1,8 @@
 <?php
-
+require_once('../sec/security.php');
 include_once "../clases/clase_user.php";
-include("../sec/BBDD.php");
+require_once("../BBDD//BBDD.php");
+
 
 
 $user = new usuario();

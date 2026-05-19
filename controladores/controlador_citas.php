@@ -1,6 +1,8 @@
 <?php
-include_once "../clases/clase_citas.php";
-include("../sec/BBDD.php");
+require_once('../sec/security.php');
+include_once "../clases/clase_user.php";
+require_once("../BBDD//BBDD.php");
+
 
 
 $cita = new citas();
