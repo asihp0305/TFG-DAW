@@ -1,1 +1,5 @@
 BBDD/
+composer.json
+composer.lock
+enviar_correo.php
+vendor/

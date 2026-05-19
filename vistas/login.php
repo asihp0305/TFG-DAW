@@ -12,8 +12,7 @@
         <form method="post" action="../perfil_usuario.php">
             <h2>Bienvenid@ a Malpartida Dental</h2>
 
-            <label
-                for="user">Usuario:</label>
+            <label for="user">Usuario:</label>
             <input type="text" id="user" name="user"><br>
 
             <label for="password">Contraseña:</label>

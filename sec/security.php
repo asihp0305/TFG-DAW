@@ -28,6 +28,8 @@ else if (isset($_POST["user"]) && isset($_POST["password"])) {
         $_SESSION["user"] = $vec["user"];
         $_SESSION["name"] = $vec["nombre"];
         $_SESSION["rol"] = $vec["rol"];
+        // Forzar la zona horaria a España (Península y Baleares)
+        date_default_timezone_set('Europe/Madrid');
     }
 } else {
     header("Location: http://{$_SERVER['HTTP_HOST']}/Malpartida-Dental/vistas/login.php");
