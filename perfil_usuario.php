@@ -14,8 +14,14 @@ include('sec/security.php');
 </head>
 <body>
     <div id="contenido">
-        <div id="trabajador"></div>
-        <div id="cliente"></div>
+        <?php 
+            // Comprobamos el rol que guardamos en la sesión durante el login
+            if ($_SESSION['rol'] == 'paciente') {
+                include('portales/cliente.php');
+            } else if ($_SESSION['rol'] == 'trabajador' || $_SESSION['rol'] == 'admin') {
+                include('portales/worker.php');
+            }
+        ?>  
     </div>
 </body>
 </html>
