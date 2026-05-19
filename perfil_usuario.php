@@ -1,5 +1,5 @@
 <?php
-require_once('sec/security.php');
+require_once __DIR__ . '/sec/security.php';
 ?>
 
 
@@ -13,6 +13,7 @@ require_once('sec/security.php');
     <title>Document</title>
 </head>
 <body>
+    
     <div id="contenido">
         <?php 
             // Comprobamos el rol que guardamos en la sesión durante el login

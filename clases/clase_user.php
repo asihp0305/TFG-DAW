@@ -51,9 +51,11 @@ class usuario{
         $caracteres = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         // Desordenamos la cadena y cortamos la longitud deseada
         $pass = substr(str_shuffle($caracteres), 0, 8);
+        // hasheo de la contrasena para mas seguridad
+        $has = password_hash($pass, PASSWORD_DEFAULT);
 
         $filt = $db->prepare('INSERT INTO usuarios (usr, password, email, rol, creator_id) values(?, ?, ?, ?, ?)');
-        $filt->bind_param('ssssi', $usuarioFinal, $pass, $email, $rol, $creator_id);
+        $filt->bind_param('ssssi', $usuarioFinal, $has, $email, $rol, $creator_id);
         $filt->execute();
         $user_id = $filt->insert_id;
         $filt->close();

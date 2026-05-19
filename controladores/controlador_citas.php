@@ -1,5 +1,5 @@
 <?php
-require_once('../sec/security.php');
+require_once __DIR__ . '/../sec/security.php';
 include_once "../clases/clase_user.php";
 require_once("../BBDD//BBDD.php");
 

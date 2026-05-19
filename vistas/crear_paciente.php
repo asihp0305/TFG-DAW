@@ -1,5 +1,5 @@
 <?php
-include('../sec/security.php');
+require_once __DIR__ . '/../sec/security.php';
 if($_SESSION['rol'] == 'trabajador' || $_SESSION['rol'] == 'admin'){
 ?>
 

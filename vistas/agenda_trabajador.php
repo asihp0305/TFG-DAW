@@ -1,5 +1,5 @@
 <?php
-require_once('../sec/security.php');
+require_once __DIR__ . '/../sec/security.php';
 
 // Verificamos por seguridad que sea trabajador
 if($_SESSION['rol'] != 'trabajador' && $_SESSION['rol'] != 'admin'){

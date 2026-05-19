@@ -1,7 +1,11 @@
 <?php
-require_once('../sec/security.php');
+require_once __DIR__ . '/../sec/security.php';
 ?>
-
+<div style="text-align: right; margin-bottom: 20px;">
+    <button id="btn-logout" style="background-color: #d9534f; color: white; border: none; padding: 10px 15px; cursor: pointer; border-radius: 4px;">
+        Cerrar Sesión
+    </button>
+</div>
 <div id="titulo">
     <h3>
         Bienvenid@ <?php echo $_SESSION['name']  ?>
@@ -22,7 +26,10 @@ require_once('../sec/security.php');
 
 <script>
 $(document).ready(function() {
-    
+    $('#btn-logout').click(function() {
+        // Redirigimos directamente al archivo de logout
+        window.location.href = 'sec/log_out.php';
+    });
     // Al pulsar "CREAR USUARIO"
     $('#btn-crear-usr').click(function() {
         // Ponemos un texto de carga opcional
