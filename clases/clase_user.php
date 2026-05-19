@@ -37,7 +37,7 @@ class usuario{
             if ($res->num_rows > 0) {
                 // Si el usuario ya existe, le sumamos un número (ggalan2, ggalan3...)
                 $cont++;
-                $usuarioFinal = $baseUsuario . $contador;
+                $usuarioFinal = $base_usuario . $cont;
             } else {
                 // Si no existe (num_rows es 0), salimos del bucle
                 $existe = false;
@@ -50,10 +50,10 @@ class usuario{
         // Definimos los caracteres permitidos (letras y números)
         $caracteres = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         // Desordenamos la cadena y cortamos la longitud deseada
-        $pass = substr(str_shuffle($caracteres), 0, $longitud);
+        $pass = substr(str_shuffle($caracteres), 0, 8);
 
         $filt = $db->prepare('INSERT INTO usuarios (usr, password, email, rol, creator_id) values(?, ?, ?, ?, ?)');
-        $filt->bind_params('ssssi', $usuarioFinal, $pass, $email, $rol, $creator_id);
+        $filt->bind_param('ssssi', $usuarioFinal, $pass, $email, $rol, $creator_id);
         $filt->execute();
         $user_id = $filt->insert_id;
         $filt->close();

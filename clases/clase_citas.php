@@ -7,7 +7,12 @@ class citas{
 
         $filt = $db->prepare('UPDATE citas SET notas = ? WHERE id = ?');
         $filt->bind_param('si',$nueva_nota, $id_cita);
-        $filt->execute();
+       
+        if($filt->execute()){
+            return true;
+        }else{
+            return false;
+        }
     }
 
 }

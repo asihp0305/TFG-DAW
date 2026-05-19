@@ -125,7 +125,7 @@ $(document).ready(function() {
 
         $.ajax({
             type: "POST",
-            url: "controladores/controlador_agenda.php",
+            url: "controladores/controlador_citas.php",
             data: {
                 id: laid,
                 notas: notas_nuevas,

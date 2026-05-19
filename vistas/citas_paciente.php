@@ -41,7 +41,7 @@ include('../sec/security.php')
             $fecha_actual = new DateTime();// fecha exacta del momento que se le da a consultar cita
 
             $limite_cancelacion = clone $fecha_actual;
-            $limite_cancelacion->modify('+24 hours')
+            $limite_cancelacion->modify('+24 hours');
     ?>
 
     <div class="cita">
