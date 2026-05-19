@@ -1,5 +1,5 @@
 <?php
-include('sec/security.php');
+require_once('sec/security.php');
 ?>
 
 
