@@ -4,7 +4,7 @@
 class usuario{
 
     function crear_usuario($email, $rol, $creator_id, $name, $surname1, $surname2){
-        include_once('../BBDD/BBDD.php');
+        include('../BBDD/BBDD.php');
         require_once('../sec/enviar_correo.php');
 
         //Metodo para generar el nombre de usuario
@@ -72,7 +72,7 @@ class usuario{
     }
 
     function crear_paciente($email, $name, $surname1, $surname2, $dni, $tel_num, $birth_date){
-        include_once('../BBDD/BBDD.php');
+        include('../BBDD/BBDD.php');
 
         $nombre_completo = $name .' '. $surname1 .' '. $surname2; 
         $rol = 'paciente';
