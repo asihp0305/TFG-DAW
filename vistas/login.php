@@ -13,10 +13,10 @@
             <h2>Bienvenid@ a Malpartida Dental</h2>
 
             <label for="user">Usuario:</label>
-            <input type="text" id="user" name="user"><br>
+            <input type="text" id="user" name="user" required autocomplete="username"><br>
 
             <label for="password">Contraseña:</label>
-            <input type="password" id="password" name="password"><br>
+            <input type="password" id="password" name="password" required autocomplete="current-password"><br>
 
             <button type="submit">ENVIAR</button>
         </form>

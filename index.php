@@ -3,10 +3,11 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Malpartida Dental - Clínica Odontológica</title>
+    <meta name="description" content="Portal web y gestión de citas para la clínica Malpartida Dental.">
     <link rel="stylesheet" href="./css/cssIndex.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <title>Document</title>
 </head>
 <body>
     <!-- navbar con el logo,botones de las diferentes paginas ,y un boton de iniciar sesion que cambie segun este iniciada la sesion o no  -->
@@ -34,11 +35,11 @@
         
         <div id="imagenes_clinica">
             <section>
-                <img src="Imagenes/recepcion.JPG" alt="imagen recepcion">
-                <img src="Imagenes/puerta_clinica.JPG" alt="imagen recepcion">
-                <img src="Imagenes/placa_clinica.JPG" alt="imagen recepcion">
-                <img src="Imagenes/sala_espera.JPG" alt="imagen recepcion">
-                <img src="Imagenes/consulta1.JPG" alt="imagen recepcion">
+                <img src="Imagenes/recepcion.JPG" alt="Mostrador principal de recepción de Malpartida Dental">
+                <img src="Imagenes/puerta_clinica.JPG" alt="Fachada exterior y puerta de entrada a la clínica">
+                <img src="Imagenes/placa_clinica.JPG" alt="Placa oficial del Ilustre Colegio Oficial de Dentistas de Extremadura">
+                <img src="Imagenes/sala_espera.JPG" alt="Sala de espera para pacientes con sillas y decoración vegetal">
+                <img src="Imagenes/consulta1.JPG" alt="Gabinete dental equipado con sillón y material odontológico">
             </section>
         </div>
 

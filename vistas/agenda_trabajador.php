@@ -25,11 +25,11 @@ $fecha_filtro = isset($_GET['fecha']) ? $_GET['fecha'] : date('Y-m-d');
 <div id="Tabla">
     <table border="1px solid black" align="center">
         <tr>
-            <th>Hora</th>
-            <th>Paciente</th>
-            <th>Servicio</th>
-            <th>Notas Médicas</th>
-            <th>Guardar Notas</th>
+            <th scope="col">Hora</th>
+            <th scope="col">Paciente</th>
+            <th scope="col">Servicio</th>
+            <th scope="col">Notas Médicas</th>
+            <th scope="col">Guardar Notas</th>
         </tr>
         
         <?php
