@@ -38,26 +38,34 @@ if(isset($_POST['id_menor'])){
 
 <script>
 $(document).ready(function() {
-    // Al pulsar "Ver mis citas"
+    // Acción: Ver Citas Próximas
     $('#ver_citas').click(function() {
-        // Limpiamos los otros contenedores para evitar solapamientos visuales
         $('#historial').empty();
         $('#menores').empty();
-        
         $('#citas').html('<p>Cargando tus citas...</p>');
         
         $.ajax({
             url: 'vistas/citas_paciente.php',
             type: 'POST',
-            data: {
-                // Enviamos el ID del usuario que está en la sesión activa
-                id: '<?php echo $_SESSION['id']; ?>'
-            },
+            data: { id: '<?php echo $_SESSION['id']; ?>' },
             success: function(data) {
                 $('#citas').html(data);
-            },
-            error: function() {
-                $('#citas').html('<p>Error al conectar con el servidor.</p>');
+            }
+        });
+    });
+
+    // Acción: Ver Historial Médico
+    $('#ver_historial').click(function() {
+        $('#citas').empty();
+        $('#menores').empty();
+        $('#historial').html('<p>Cargando tu historial médico...</p>');
+        
+        $.ajax({
+            url: 'vistas/hist_paciente.php',
+            type: 'POST',
+            data: { id: '<?php echo $_SESSION['id']; ?>' },
+            success: function(data) {
+                $('#historial').html(data);
             }
         });
     });
