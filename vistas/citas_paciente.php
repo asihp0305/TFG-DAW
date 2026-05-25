@@ -16,7 +16,7 @@ $query = <<<SQL
             ON ci.servicio_id = serv.id
         INNER JOIN pacientes p
             on ci.paciente_id = p.id
-        WHERE p.usuario_id = ?
+        WHERE p.usuario_id = ? AND ci.estado = 'pendiente'
         SQL;
 
 $filt = $db->prepare($query);

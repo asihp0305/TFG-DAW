@@ -20,7 +20,7 @@ class citas{
         
         $id_ejecutor = $_SESSION['id'];
 
-        $filt = $db->prepare('DELETE FROM citas where id = ? and (paciente_id = ? or trabajador_id = ?)');
+        $filt = $db->prepare('UPDATE citas SET estado = "cancelada" WHERE id = ? AND (paciente_id = ? OR trabajador_id = ?)');
         $filt->bind_param('iii',$id_cita,$id_ejecutor,$id_ejecutor);
 
         if($filt->execute()){
