@@ -14,15 +14,15 @@ $query = <<<SQL
             ON ci.trabajador_id = tr.id
         INNER JOIN servicios serv 
             ON ci.servicio_id = serv.id
-        WHERE paciente_id = ?
+        INNER JOIN pacientes p
+            on ci.paciente_id = p.id
+        WHERE p.usuario_id = ?
         SQL;
 
 $filt = $db->prepare($query);
-$filt->bind_param('i', $_POST['id']);
+$filt->bind_param('i', $_SESSION['id']);
 $filt->execute();
 $res = $filt->get_result();
-
-
 
 for($i = 0; $i < $res->num_rows; $i++){
     $vec = $res->fetch_assoc();
@@ -35,25 +35,24 @@ for($i = 0; $i < $res->num_rows; $i++){
 
     $limite_cancelacion = clone $fecha_actual;
     $limite_cancelacion->modify('+24 hours');
+    // Formateamos la fecha y hora para que sea legible
+    $fecha_formateada = date('d/m/Y', strtotime($vec['fecha']));
+    $hora_formateada = date('H:i', strtotime($vec['hora_inicio']));
 ?>
-
 <div class="cita">
-    <div class="fecha">
-        <h3><?php echo $vec['fecha'].' '. $vec['hora_inicio'] ?></h3>
+    <div class="cita-info">
+        <p><strong>📅 Fecha y Hora:</strong> <?php echo $fecha_formateada; ?> a las <?php echo $hora_formateada; ?></p>
+        <p><strong>🦷 Tratamiento:</strong> <?php echo htmlspecialchars($vec['nombre_servicio']); ?></p>
+        <p><strong>👨‍⚕️ Profesional:</strong> Dr/a. <?php echo htmlspecialchars($vec['nombre_trabajador']); ?></p>
     </div>
-    <div class="servicio">
-        <p> <?php echo $vec['nombre_servicio'] ?> </p>
-    </div>
-    <div class="profesional">
-        <p> <?php echo $vec['nombre_trabajador']?> </p>
-    </div>
+    
     <div class="acciones">
         <?php if($vec['notas'] != null){ ?>
             <button class="btn_notas">VER NOTAS</button>
         <?php } ?>
         
-        <?php if($fecha_actual > $limite_cancelacion){ ?>
-            <button class="btn_cancelar" idCita="<?php echo $vec['id'] ?>">CANCELAR</button>
+        <?php if($fecha_actual < $limite_cancelacion){ ?>
+            <button class="btn_cancelar" idCita="<?php echo $vec['id']; ?>">CANCELAR CITA</button>
         <?php } ?>
     </div>
 </div>

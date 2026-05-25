@@ -5,6 +5,7 @@ if(isset($_POST['id_menor'])){
     $gestion_menor = true;
 }
 ?>
+<link rel="stylesheet" href="css/cssPaciente.css">
 <!-- Se ubica dentro de cliente que esta dentro de contenido -->
         <div id="titulo">
                 <h2>Bienvenid@ <?php echo $_SESSION['name'] ?></h2>
