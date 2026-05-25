@@ -14,13 +14,11 @@ $query = <<<SQL
             ON ci.trabajador_id = tr.id
         INNER JOIN servicios serv 
             ON ci.servicio_id = serv.id
-        INNER JOIN pacientes p
-            on ci.paciente_id = p.id
-        WHERE p.usuario_id = ? AND ci.estado = 'pendiente'
+        WHERE ci.paciente_id = ? AND ci.estado = 'pendiente'
         SQL;
 
 $filt = $db->prepare($query);
-$filt->bind_param('i', $_SESSION['id']);
+$filt->bind_param('i', $_SESSION['id_rol']);
 $filt->execute();
 $res = $filt->get_result();
 
@@ -82,8 +80,8 @@ $(document).ready(function() {
                 type: 'POST',
                 url: 'controladores/controlador_citas.php',
                 data: {
-                    opt: 3, // Opción 3: Cancelar Cita
-                    id: idCitaSeleccionada
+                    opt: 2, // Opción 2: Cancelar Cita
+                    id_cita: idCitaSeleccionada
                 },
                 success: function(respuesta) {
                     if(respuesta.trim() === 'ok') {

@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../sec/security.php';
-include_once "../clases/clase_user.php";
+include_once "../clases/clase_citas.php";
 require_once("../BBDD//BBDD.php");
 
 
@@ -22,8 +22,7 @@ switch($option){
         }
 
     case 2:
-        $id_cita = filter_input(INPUT_POST, 'id_cita'. FILTER_SANITIZE_NUMBER_INT);
-
+        $id_cita = filter_input(INPUT_POST, 'id_cita', FILTER_SANITIZE_NUMBER_INT);
         if($cita->cancelar_cita($id_cita)){
             echo 'ok';
         }else{

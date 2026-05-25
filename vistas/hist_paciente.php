@@ -22,8 +22,7 @@ $query = "
     FROM citas ci
     INNER JOIN trabajadores tr ON ci.trabajador_id = tr.id
     INNER JOIN servicios serv ON ci.servicio_id = serv.id
-    INNER JOIN pacientes p ON ci.paciente_id = p.id
-    WHERE p.usuario_id = ? AND ci.estado = 'completada'
+    WHERE ci.paciente_id = ? AND ci.estado = 'completada'
 ";
 
 if ($servicio_filtro !== 'todos') {
@@ -35,9 +34,9 @@ $query .= " ORDER BY ci.fecha $orden, ci.hora_inicio $orden";
 $filt = $db->prepare($query);
 
 if ($servicio_filtro !== 'todos') {
-    $filt->bind_param('ii', $_SESSION['id'], $servicio_filtro);
+    $filt->bind_param('ii', $_SESSION['id_rol'], $servicio_filtro);
 } else {
-    $filt->bind_param('i', $_SESSION['id']);
+    $filt->bind_param('i', $_SESSION['id_rol']);
 }
 
 $filt->execute();

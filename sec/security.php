@@ -30,13 +30,13 @@ else if (isset($_POST["user"]) && isset($_POST["password"])) {
         $_SESSION["rol"] = $vec["rol"];
         
         if($vec['rol'] == 'paciente'){
-            $filt = $db->prepare('SELECT nombre from pacientes where usuario_id = ? ');
+            $filt = $db->prepare('SELECT nombre, id from pacientes where usuario_id = ? ');
             $filt->bind_param('i',$vec['id']);
             $filt->execute();
             $res = $filt->get_result();
             $vec = $res->fetch_assoc();
         }else{
-            $filt = $db->prepare('SELECT nombre from trabajadores where usuario_id = ? ');
+            $filt = $db->prepare('SELECT nombre, id from trabajadores where usuario_id = ? ');
             $filt->bind_param('i',$vec['id']);
             $filt->execute();
             $res = $filt->get_result();
@@ -45,6 +45,7 @@ else if (isset($_POST["user"]) && isset($_POST["password"])) {
 
         $arrayNombre = explode(' ',$vec['nombre']);
         $_SESSION["name"] = $arrayNombre[0];
+        $_SESSION['id_rol'] = $vec['id'];
 
         // Forzar la zona horaria a España (Península y Baleares)
         date_default_timezone_set('Europe/Madrid');
