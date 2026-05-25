@@ -21,6 +21,15 @@ switch($option){
             echo 'error';
         }
 
+    case 2:
+        $id_cita = filter_input(INPUT_POST, 'id_cita'. FILTER_SANITIZE_NUMBER_INT);
+
+        if($cita->cancelar_cita($id_cita)){
+            echo 'ok';
+        }else{
+            echo 'error';
+        }
+
     default:
         break;
 }

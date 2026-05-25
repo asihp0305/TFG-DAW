@@ -15,6 +15,21 @@ class citas{
         }
     }
 
+    function cancelar_cita($id_cita){
+        require_once('../BBDD/BBDD.php');
+        
+        $id_ejecutor = $_SESSION['id'];
+
+        $filt = $db->prepare('DELETE FROM citas where id = ? and (paciente_id = ? or trabajador_id = ?)');
+        $filt->bind_param('iii',$id_cita,$id_ejecutor,$id_ejecutor);
+
+        if($filt->execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 }
 
 ?>

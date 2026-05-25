@@ -1,5 +1,5 @@
 <?php
-include('../sec/security.php');
+require_once __DIR__ . '/../sec/security.php';
 $gestion_menor = false;
 if(isset($_POST['id_menor'])){
     $gestion_menor = true;
@@ -33,3 +33,32 @@ if(isset($_POST['id_menor'])){
             <div id="historial"></div>
             <div id="menores"></div>
         </div>
+
+
+<script>
+$(document).ready(function() {
+    // Al pulsar "Ver mis citas"
+    $('#ver_citas').click(function() {
+        // Limpiamos los otros contenedores para evitar solapamientos visuales
+        $('#historial').empty();
+        $('#menores').empty();
+        
+        $('#citas').html('<p>Cargando tus citas...</p>');
+        
+        $.ajax({
+            url: 'vistas/citas_paciente.php',
+            type: 'POST',
+            data: {
+                // Enviamos el ID del usuario que está en la sesión activa
+                id: '<?php echo $_SESSION['id']; ?>'
+            },
+            success: function(data) {
+                $('#citas').html(data);
+            },
+            error: function() {
+                $('#citas').html('<p>Error al conectar con el servidor.</p>');
+            }
+        });
+    });
+});
+</script>
