@@ -7,29 +7,32 @@ if(isset($_POST['id_menor'])){
 ?>
 <link rel="stylesheet" href="css/cssPaciente.css">
 <!-- Se ubica dentro de cliente que esta dentro de contenido -->
+        <div id="navBar">
+            <div id="DVlogo">
+                <img src="Imagenes/logo_minimalista.png" alt="Logo Malpartida Dental" width="65px" height="45px">
+                <span class="portal-tag">Portal Paciente</span>
+            </div>
+            
+            <div id="DVpaginas">
+                <button id="ver_citas" class="nav-link">Mis Citas</button>
+                <button id="ver_historial" class="nav-link">Historial Médico</button>
+                <?php 
+                if($_SESSION['es_tutor'] == 1 ){
+                ?>
+                <button id="ver_menores" class="nav-link">Personas a Cargo</button>
+                <?php }?>
+            </div>
+            
+            <div id="DVusuario">
+                <button id="btn_logout" onclick="window.location.href='sec/log_out.php'">Cerrar Sesión</button>
+            </div>
+        </div>
+
         <div id="titulo">
                 <h2>Bienvenid@ <?php echo $_SESSION['name'] ?></h2>
         </div>
+
         <div id="contenido_botones">
-            <h3>¿Que deseas hacer?</h3>
-            <div id="botones">
-                <button id="ver_citas">Ver mis citas</button>
-                <button id="ver_historial">Ver mi historial médico</button>
-                <?php 
-                if(!isset($gestion_menor)){
-                    $filt = $db->prepare('SELECT tutor_legal from pacientes where usuario_id = ?');
-                    $filt->bind_param('i', $_SESSION['id']);
-                    $filt->execute();
-                    $res = $filt->get_result();
-
-                    $vec = $res->fetch_assoc();
-
-                    if($vec['tutor_legal'] == 1 ){
-                ?>
-                <button id="ver_menores">Gestionar mis menores</button>
-                <?php } }?>
-            </div>
-
             <div id="citas"></div>
             <div id="historial"></div>
             <div id="menores"></div>
@@ -66,6 +69,21 @@ $(document).ready(function() {
             data: { id: '<?php echo $_SESSION['id']; ?>' },
             success: function(data) {
                 $('#historial').html(data);
+            }
+        });
+    });
+    
+    // Acción: Ver Citas de Menores
+    $('#ver_menores').click(function() {
+        $('#citas').empty();
+        $('#historial').empty();
+        $('#menores').html('<p>Cargando citas de personas a cargo...</p>');
+        
+        $.ajax({
+            url: 'vistas/menores_paciente.php',
+            type: 'POST',
+            success: function(data) {
+                $('#menores').html(data);
             }
         });
     });

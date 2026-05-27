@@ -208,3 +208,93 @@
     font-style: italic;
     margin-top: 30px;
 }
+
+/* ==========================================================================
+   ESTILOS DE LA NAVBAR PRINCIPAL (Portal del Paciente)
+   ========================================================================== */
+#navBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(47, 46, 46); /* Gris oscuro de la clínica */
+    padding: 10px 40px;
+    color: #ffffff;
+    font-family: sans-serif;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+#DVlogo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.portal-tag {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 1px;
+    border-left: 2px solid rgba(255, 255, 255, 0.3);
+    padding-left: 15px;
+    color: #e0e0e0;
+}
+
+#DVpaginas {
+    display: flex;
+    gap: 10px;
+}
+
+/* Enlaces de navegación limpios (Eliminamos el aspecto de botón clásico) */
+.nav-link {
+    background: none !important;
+    border: none !important;
+    color: #b3b3b3 !important;
+    padding: 10px 20px !important;
+    font-size: 13px !important;
+    font-weight: bold !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: color 0.3s ease !important;
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+.nav-link:hover {
+    color: #ffffff !important;
+    background: none !important;
+}
+
+/* Botón de Salida Seguro */
+#btn_logout {
+    background-color: #d9534f !important;
+    color: #ffffff !important;
+    border: none !important;
+    padding: 8px 18px !important;
+    font-size: 12px !important;
+    font-weight: bold !important;
+    text-transform: uppercase !important;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+#btn_logout:hover {
+    background-color: #c9302c !important;
+    transform: scale(1.02);
+}
+
+/* Ajustes del contenedor inferior para las tarjetas */
+#titulo {
+    text-align: center;
+    margin: 30px 0;
+    font-family: sans-serif;
+    color: rgb(47, 46, 46);
+}
+
+#citas, #historial, #menores {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
