@@ -30,11 +30,14 @@ else if (isset($_POST["user"]) && isset($_POST["password"])) {
         $_SESSION["rol"] = $vec["rol"];
         
         if($vec['rol'] == 'paciente'){
-            $filt = $db->prepare('SELECT nombre, id from pacientes where usuario_id = ? ');
+            $filt = $db->prepare('SELECT nombre, id,tutor_legal from pacientes where usuario_id = ? ');
             $filt->bind_param('i',$vec['id']);
             $filt->execute();
             $res = $filt->get_result();
             $vec = $res->fetch_assoc();
+
+            $_SESSION['es_tutor'] = $vec['tutor_legal'];
+
         }else{
             $filt = $db->prepare('SELECT nombre, id from trabajadores where usuario_id = ? ');
             $filt->bind_param('i',$vec['id']);

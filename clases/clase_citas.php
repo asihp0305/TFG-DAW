@@ -20,8 +20,8 @@ class citas{
 
         $id_ejecutor = $_SESSION['id_rol'];
 
-        $filt = $db->prepare('UPDATE citas SET estado = "cancelada" WHERE id = ? AND (paciente_id = ? OR trabajador_id = ?)');
-        $filt->bind_param('iii',$id_cita,$id_ejecutor,$id_ejecutor);
+        $filt = $db->prepare('UPDATE citas SET estado = "cancelada" WHERE id = ? AND (paciente_id = ? OR trabajador_id = ? or tutor_id = ?)');
+        $filt->bind_param('iiii',$id_cita,$id_ejecutor,$id_ejecutor,$id_ejecutor);
 
        if($filt->execute()){
             // Comprobamos si MySQL realmente modificó alguna fila
