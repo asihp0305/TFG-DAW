@@ -46,7 +46,7 @@ $fecha_filtro = isset($_GET['fecha']) ? $_GET['fecha'] : date('Y-m-d');
             FROM citas ci
             INNER JOIN pacientes pa ON ci.paciente_id = pa.id
             INNER JOIN servicios se ON ci.servicio_id = se.id
-            WHERE ci.trabajador_id = ? AND ci.fecha = ?
+            WHERE ci.trabajador_id = ? AND ci.fecha = ? and ci.estado != 'cancelada'
             ORDER BY ci.hora_inicio ASC
         ";
 
