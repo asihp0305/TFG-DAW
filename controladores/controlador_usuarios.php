@@ -20,4 +20,19 @@ switch ($option) {
         $birth_date = filter_input(INPUT_POST, 'birth_date', FILTER_SANITIZE_SPECIAL_CHARS);
 
         $user->crear_paciente($email,$name,$surname1,$surname2,$dni,$tel_num,$birth_date);
+        
+        break;
+
+    case '2':
+        //saneamos los datos que llegan del formulario
+        $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+        $nombre = filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_SPECIAL_CHARS);
+        $ape1 = filter_input(INPUT_POST, 'apellido1', FILTER_SANITIZE_SPECIAL_CHARS);
+        $ape2 = filter_input(INPUT_POST, 'apellido2', FILTER_SANITIZE_SPECIAL_CHARS);
+        $dni = filter_input(INPUT_POST, 'dni', FILTER_SANITIZE_SPECIAL_CHARS);
+        $especialidad = filter_input(INPUT_POST, 'especialidad', FILTER_SANITIZE_SPECIAL_CHARS);
+
+        $user->crear_trabajador($nombre,$ape1,$ape2,$dni,$email,$especialidad);
+
+        break;
 }

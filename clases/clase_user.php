@@ -88,6 +88,23 @@ class usuario{
         
     }
 
+
+    function crear_trabajador($nombre, $ape1, $ape2,$dni, $mail, $especialidad){
+        include('../BBDD/BBDD.php');
+
+        $nombre_completo = $nombre .' '. $ape1 .' '. $ape2;
+        $rol = 'trabajador';
+
+        //Insercion del usuario
+        $usr_id = $this->crear_usuario($mail,$rol,$_SESSION['id'],$nombre, $ape1,$ape2);
+
+        //Insercion del trabajador
+        $filt = $db->prepare('INSERT INTO trabajadores (usuario_id, nombre, dni, especialidad) VALUES (?,?,?,?)');
+        $filt->bind_param('isss',$usr_id,$nombre_completo,$dni,$especialidad);
+        $filt->execute();
+        $filt->close();
+
+    }
 }
 
 ?>
