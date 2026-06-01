@@ -1,0 +1,261 @@
+/* ==========================================================================
+   ESTILOS GENERALES DEL PORTAL DEL TRABAJADOR
+   ========================================================================== */
+body {
+    background-color: rgba(231, 230, 230, 0.808);
+    margin: 0;
+    font-family: sans-serif;
+}
+
+/* ==========================================================================
+   ESTILOS DE LA NAVBAR PRINCIPAL 
+   ========================================================================== */
+#navBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    background-color: rgba(231, 230, 230, 0.808);
+    padding: 0 40px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+#DVlogo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.portal-tag {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 1px;
+    border-left: 2px solid rgb(47, 46, 46);
+    padding-left: 15px;
+    color: rgb(47, 46, 46);
+    font-family: 'Anton', sans-serif;
+}
+
+#DVpaginas {
+    display: flex;
+    gap: 10px;
+}
+
+.nav-link {
+    background: none !important;
+    border: none !important;
+    color: rgb(47, 46, 46) !important;
+    padding: 20px !important;
+    font-size: 16px !important;
+    font-family: 'Anton', sans-serif;
+    letter-spacing: 1px;
+    cursor: pointer;
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 12px;
+    width: 0;
+    height: 3px;
+    background: rgb(47, 46, 46);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Botón de Salida */
+#btn-logout {
+    background-color: rgb(47, 46, 46) !important; 
+    color: #ffffff !important;
+    border: 1px solid rgb(47, 46, 46) !important; 
+    padding: 10px 24px !important; 
+    font-family: sans-serif; 
+    font-size: 14px !important;
+    font-weight: 600 !important; 
+    text-transform: uppercase !important; 
+    letter-spacing: 1px !important; 
+    border-radius: 4px !important; 
+    cursor: pointer;
+    transition: all 0.3s ease !important; 
+}
+
+#btn-logout:hover {
+    background-color: rgba(231, 230, 230, 0.808) !important;
+    color: rgb(47, 46, 46) !important;
+}
+
+/* ==========================================================================
+   CONTENEDOR DE VISTAS (Agenda, Citas, Formularios)
+   ========================================================================== */
+#titulo {
+    text-align: center;
+    margin: 40px 0 20px 0;
+}
+
+#titulo h3 {
+    font-family: 'Anton', sans-serif;
+    font-size: 32px;
+    color: rgb(47, 46, 46);
+    letter-spacing: 1px;
+    margin: 0;
+}
+
+#vista-dinamica {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* ==========================================================================
+   ESTILOS DE FORMULARIOS INTEGRADOS (Sin fondo blanco)
+   ========================================================================== */
+.form-container {
+    max-width: 550px;
+    margin: 0 auto;
+    /* Eliminamos el fondo blanco, el borde lateral y las sombras */
+    background: transparent; 
+    padding: 20px 0; 
+}
+
+.subtitulo {
+    color: #666;
+    text-align: center;
+    margin-bottom: 35px;
+    font-size: 15px;
+    font-style: italic;
+}
+
+.formulario-estandar {
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* Un poco más de aire para que respire al no tener caja */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-weight: 800;
+    color: rgb(47, 46, 46);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-left: 5px; /* Para alinearlo con el inicio del input */
+}
+
+/* Campos de texto y select integrados */
+.form-group input, 
+.form-group select {
+    padding: 12px 15px;
+    /* Fondo semi-transparente para que se fusione con el gris de la web */
+    background-color: rgba(255, 255, 255, 0.4); 
+    border: none;
+    border-bottom: 2px solid rgba(47, 46, 46, 0.3); /* Solo línea inferior */
+    border-radius: 6px 6px 0 0; /* Curvas solo arriba */
+    font-family: sans-serif;
+    font-size: 15px;
+    color: #222222;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    background-color: rgba(255, 255, 255, 0.8); /* Se vuelve más blanco al escribir */
+    border-bottom: 2px solid rgb(47, 46, 46); /* La línea se oscurece */
+}
+
+/* Para navegadores que no pillan bien la transparencia en las opciones del select */
+.form-group select option {
+    background-color: #ffffff; 
+}
+
+.btn-submit {
+    margin-top: 20px;
+    background-color: rgb(47, 46, 46);
+    color: white;
+    padding: 14px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.3s ease;
+}
+
+.btn-submit:hover:not(:disabled) {
+    background-color: #1a1a1a;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    transform: translateY(-2px); /* Pequeño efecto de elevación */
+}
+
+.btn-submit:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.btn-submit:disabled {
+    background-color: #999999;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.mensaje-respuesta {
+    margin-top: 20px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 15px;
+    min-height: 22px; 
+}
+
+.mensaje-respuesta.exito {
+    color: #28a745;
+}
+
+.mensaje-respuesta.error {
+    color: #d9534f;
+}
+/* ==========================================================================
+   ESTILOS PARA AGRUPACIONES (Fieldsets) Y COLUMNAS
+   ========================================================================== */
+.fieldset-integrado {
+    border: 1px solid rgba(47, 46, 46, 0.2); /* Borde muy sutil para separar secciones */
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 10px;
+    background: transparent; /* Mantenemos la integración con el fondo */
+}
+
+.legend-integrado {
+    font-family: 'Anton', sans-serif;
+    font-size: 18px;
+    color: rgb(47, 46, 46);
+    padding: 0 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.fila-inputs {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+}
+
+/* Responsividad para móviles: si la pantalla es pequeña, los apellidos se ponen uno debajo del otro */
+@media (max-width: 600px) {
+    .fila-inputs {
+        flex-direction: column;
+        gap: 25px; /* Misma separación que el resto del formulario */
+    }
+}
