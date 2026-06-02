@@ -159,7 +159,7 @@ if (isset($_POST['id_menor'])) {
             btnGuardar.text('Actualizando...').prop('disabled', true);
 
             $.ajax({
-                url: '../controladores/controlador_usuarios.php',
+                url: 'controladores/controlador_usuarios.php',
                 type: 'POST',
                 dataType: 'json',
                 data: {

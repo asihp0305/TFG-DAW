@@ -26,7 +26,7 @@
                 <img src="Imagenes/icono_log.png" alt="Sesion iniciada" class="avatar-dropdown" width="55px">
                 <div class="dropdown-content">
                     <a href="perfil_usuario.php">Mi Portal</a>
-                    <a href="#" id="btn-cambiar-pass">Cambiar Contraseña</a>
+                    <a href="#" id="btn-cambiar-pass-interno">Cambiar Contraseña</a>
                     <a href="sec/log_out.php">Cerrar Sesión</a>
                 </div>
             <?php }else{?>
@@ -61,6 +61,32 @@
     <div id="modalOverlay" class="modal-oculto">
         <div id="modalLogin"></div>
     </div>
+    <div id="modal-cambiar-pass" class="modal-overlay" style="display:none;">
+    <div class="modal-content">
+        <span class="cerrar-modal" id="cerrar-modal-pass">&times;</span>
+        <h3 style="text-align: center; margin-bottom: 20px; color: rgb(47, 46, 46);">Cambiar Contraseña</h3>
+        
+        <form id="form-cambiar-pass" class="formulario-estandar">
+            <div class="form-group">
+                <label for="pass_antigua">Contraseña Actual:</label>
+                <input type="password" id="pass_antigua" name="pass_antigua" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="pass_nueva">Nueva Contraseña:</label>
+                <input type="password" id="pass_nueva" name="pass_nueva" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="pass_confirmar">Confirmar Nueva Contraseña:</label>
+                <input type="password" id="pass_confirmar" name="pass_confirmar" required>
+            </div>
+            
+            <button type="submit" id="btn-guardar-pass" class="btn-submit" style="width: 100%;">Actualizar Contraseña</button>
+            <div id="mensaje_respuesta_pass" class="mensaje-respuesta"></div>
+        </form>
+    </div>
+</div>
 </body>
 <script>
 $(document).ready(function() {
@@ -90,6 +116,72 @@ $(document).ready(function() {
             });
         }
     });
+
+     // 1. Abrir el modal desde el desplegable
+        $('#btn-cambiar-pass-interno').click(function(e) {
+            e.preventDefault();
+            $('#modal-cambiar-pass').fadeIn(200);
+        });
+
+        // 2. Cerrar el modal
+        $('#cerrar-modal-pass').click(function() {
+            $('#modal-cambiar-pass').fadeOut(200);
+            $('#form-cambiar-pass')[0].reset(); // Limpiar inputs al cerrar
+            $('#mensaje_respuesta_pass').removeClass('exito error').text('');
+        });
+
+        // 3. Procesar el formulario
+        $('#form-cambiar-pass').submit(function(e) {
+            e.preventDefault();
+
+            let pass_antigua = $('#pass_antigua').val();
+            let pass_nueva = $('#pass_nueva').val();
+            let pass_confirmar = $('#pass_confirmar').val();
+            let divMensaje = $('#mensaje_respuesta_pass');
+            let btnGuardar = $('#btn-guardar-pass');
+
+            // Validación Front-End
+            if (pass_nueva !== pass_confirmar) {
+                divMensaje.removeClass('exito').addClass('error').text('Las contraseñas nuevas no coinciden.');
+                return;
+            }
+            if (pass_nueva.length < 6) {
+                divMensaje.removeClass('exito').addClass('error').text('La contraseña debe tener al menos 6 caracteres.');
+                return;
+            }
+
+            btnGuardar.text('Actualizando...').prop('disabled', true);
+
+            $.ajax({
+                url: 'controladores/controlador_usuarios.php',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    opt: 6, // Usaremos el caso 8 para esto
+                    pass_antigua: pass_antigua,
+                    pass_nueva: pass_nueva
+                },
+                success: function(respuesta) {
+                    if (respuesta.status === 'ok') {
+                        divMensaje.removeClass('error').addClass('exito').text('¡Contraseña actualizada con éxito!');
+                        $('#form-cambiar-pass')[0].reset();
+                        // Opcional: Cerrar el modal automáticamente tras 2 segundos
+                        setTimeout(() => {
+                            $('#modal-cambiar-pass').fadeOut(200);
+                        }, 2000);
+                    } else {
+                        divMensaje.removeClass('exito').addClass('error').text(respuesta.mensaje);
+                    }
+                },
+                error: function() {
+                    divMensaje.removeClass('exito').addClass('error').text('Error de conexión con el servidor.');
+                },
+                complete: function() {
+                    btnGuardar.text('Actualizar Contraseña').prop('disabled', false);
+                }
+            });
+        });
+
 });
 </script>
 </html>
