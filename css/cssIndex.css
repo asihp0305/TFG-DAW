@@ -373,3 +373,71 @@ background-color: rgb(47, 46, 46); /* Coincide con tu navbar, o usa #333 */
 }
 .mensaje-respuesta.exito { color: #28a745; }
 .mensaje-respuesta.error { color: #dc3545; }
+
+/* ==========================================================================
+   FOOTER (Pie de página)
+   ========================================================================== */
+#footer-clinica {
+    background-color: rgb(47, 46, 46);
+    color: white;
+    padding: 40px 0 10px 0;
+    margin-top: 60px;
+    font-family: sans-serif;
+    width: 100%;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 30px;
+    padding: 0 20px;
+}
+
+.footer-columna {
+    flex: 1;
+    min-width: 250px;
+}
+
+.footer-columna h4 {
+    color: #e0e0e0;
+    margin-bottom: 15px;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 8px;
+    display: inline-block;
+}
+
+.footer-columna p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 8px 0;
+    color: #aaaaaa;
+}
+
+/* Etiqueta que justifica el estado del proyecto */
+.mvp-badge {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 5px 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    font-size: 11px !important;
+    color: #ffffff !important;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 40px;
+    padding-top: 15px;
+    font-size: 12px;
+    color: #777777;
+}

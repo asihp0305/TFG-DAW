@@ -17,7 +17,7 @@
         </div>
         <div id="DVpaginas" >
             <a href="#">BIENVENIDOS</a><!-- link que lleva a la bienvenida -->
-            <a href="#">QUIENES SOMOS</a><!-- link que lleva al apartado de quienes somos -->
+            <a href="#quienes_somos">QUIENES SOMOS</a><!-- link que lleva al apartado de quienes somos -->
         </div>
         <div id="DVusuario" class="dropdown-wrapper">
             <?php 
@@ -47,16 +47,53 @@
             </section>
         </div>
 
-        <div id="quienes_somos">
-            <h2>¿QUIENES SOMOS?</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                Quasi reprehenderit aperiam laudantium quia earum mollitia debitis, 
-                similique enim voluptates, itaque voluptas. Molestias quibusdam quasi 
-                consequuntur possimus dignissimos eveniet voluptatibus sed!
+       <div id="quienes_somos" style="max-width: 900px; margin: 40px auto; text-align: center; padding: 0 20px;">
+            <h2 style="color: rgb(47, 46, 46); margin-bottom: 20px; font-family: 'Anton', sans-serif; letter-spacing: 1px;">NUESTRA FILOSOFÍA</h2>
+            
+            <p style="font-size: 16px; line-height: 1.8; color: #444; margin-bottom: 15px; text-align: justify;">
+                En <strong>Malpartida Dental</strong> no solo cuidamos de tu sonrisa, sino que redefinimos el estándar de la salud bucodental. Nacida en el corazón de Malpartida de Cáceres, nuestra clínica ha evolucionado hasta consolidarse como un centro de referencia y de <strong>alto reconocimiento a nivel estatal</strong>. 
+            </p>
+
+            <p style="font-size: 16px; line-height: 1.8; color: #444; margin-bottom: 15px; text-align: justify;">
+                Gran parte de este prestigio recae en la trayectoria de nuestro cirujano principal. Tras años de experiencia ejerciendo en los centros más exigentes de todo el territorio nacional, su labor ha sido galardonada con <strong>múltiples premios estatales</strong> que avalan su excelencia médica y quirúrgica. Su liderazgo nos permite abordar desde los tratamientos preventivos hasta las cirugías maxilofaciales más complejas con absoluta garantía de éxito.
+            </p>
+
+            <p style="font-size: 16px; line-height: 1.8; color: #444; margin-bottom: 15px; text-align: justify;">
+                Además, nos definimos como un espacio <strong>vanguardista e inconformista</strong>. Entendemos que la odontología moderna debe ir irremediablemente unida a la innovación técnica. Por ello, apostamos fuertemente por la integración de nuevas tecnologías en todos nuestros gabinetes: diagnósticos por imagen de altísima precisión, flujos de trabajo 100% digitales y aparatología de última generación, buscando siempre la mejora continua, tiempos de recuperación más cortos y el máximo confort para nuestros pacientes.
+            </p>
+
+            <p style="font-size: 16px; line-height: 1.8; color: #444; text-align: center; font-weight: bold; margin-top: 30px;">
+                Experiencia premiada y tecnología de vanguardia, ahora a tu alcance.
             </p>
         </div>
 
     </div>
+
+    <footer id="footer-clinica">
+        <div class="footer-container">
+            <div class="footer-columna">
+                <h4>Malpartida Dental</h4>
+                <p>Tu clínica de confianza en Malpartida de Cáceres. Innovación y trato cercano para tu salud bucodental.</p>
+                <p class="mvp-badge">Demo Operativa (v1.0)</p>
+            </div>
+            
+            <div class="footer-columna">
+                <h4>Contacto y Ubicación</h4>
+                <p>📍 C. Cruz, 9, 10910</p>
+                <p>📍 Malpartida de Cáceres, Cáceres</p>
+                <p>📞 601 645 375</p>
+            </div>
+            
+            <div class="footer-columna">
+                <h4>Horario de Atención</h4>
+                <p>Lunes - Jueves: 09:00 - 14:00 | 15:00 - 19:00</p>
+                <p>Viernes: 09:00 - 17:00</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Malpartida Dental. Asier Hernández Parra Desarrollo a medida - Proyecto DAW.</p>
+        </div>
+    </footer>
 
     <div id="modalOverlay" class="modal-oculto">
         <div id="modalLogin"></div>
