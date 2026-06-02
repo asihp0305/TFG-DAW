@@ -10,28 +10,35 @@ if($_SESSION['rol'] != 'trabajador' && $_SESSION['rol'] != 'admin'){
 $fecha_filtro = isset($_GET['fecha']) ? $_GET['fecha'] : date('Y-m-d');
 ?>
 
-<div id="selector_fecha" style="text-align: center; margin-bottom: 20px;">
-    <button id="btn-dia-anterior">&laquo; Día Anterior</button>
+<div class="selector-fecha-container">
+    <div class="navegacion-fecha">
+        <button id="btn-dia-anterior" class="btn-nav-fecha">&laquo; Día Anterior</button>
+        
+        <div class="input-fecha-wrapper">
+            <label for="fecha_agenda">Agenda del día:</label>
+            <input type="date" id="fecha_agenda" class="input-fecha-integrado" value="<?php echo $fecha_filtro; ?>">
+        </div>
+        
+        <button id="btn-dia-siguiente" class="btn-nav-fecha">Día Siguiente &raquo;</button>
+    </div>
     
-    <h3 style="display: inline-block; margin: 0 15px;">
-        Agenda del día: <input type="date" id="fecha_agenda" value="<?php echo $fecha_filtro; ?>">
-    </h3>
-    
-    <button id="btn-dia-siguiente">Día Siguiente &raquo;</button>
-    <br><br>
-    <button id="BotBuscarFecha">Buscar Fecha Seleccionada</button>
+    <button id="BotBuscarFecha" class="btn-submit btn-buscar-fecha">
+        Buscar Fecha Seleccionada
+    </button>
 </div>
 
-<div id="Tabla">
-    <table border="1px solid black" align="center">
-        <tr>
-            <th scope="col">Hora</th>
-            <th scope="col">Paciente</th>
-            <th scope="col">Servicio</th>
-            <th scope="col">Notas Médicas</th>
-            <th scope="col">Guardar Notas</th>
-        </tr>
-        
+<div class="tabla-integrada-container">
+    <table class="tabla-integrada">
+        <thead>
+            <tr>
+                <th scope="col">Hora</th>
+                <th scope="col">Paciente</th>
+                <th scope="col">Servicio</th>
+                <th scope="col">Notas Médicas</th>
+                <th scope="col">Acción</th>
+            </tr>
+        </thead>
+        <tbody>
         <?php
         $trabajador_id = $_SESSION['id'];
         
@@ -55,21 +62,26 @@ $fecha_filtro = isset($_GET['fecha']) ? $_GET['fecha'] : date('Y-m-d');
         $filt->execute();
         $res = $filt->get_result();
 
-        // Usamos el for clásico de tu profesor
-        for ($i = 0; $i < $res->num_rows; $i++) {
-            $vec = $res->fetch_assoc();
-            $hora_formateada = date('H:i', strtotime($vec['hora_inicio']));
+        if ($res->num_rows === 0) {
+            echo "<tr><td colspan='5' style='text-align:center; font-style:italic; padding:20px;'>No hay citas programadas para este día.</td></tr>";
+        } else {
+            for ($i = 0; $i < $res->num_rows; $i++) {
+                $vec = $res->fetch_assoc();
+                $hora_formateada = date('H:i', strtotime($vec['hora_inicio']));
+            ?>
+                <tr>
+                    <td><strong><?php echo $hora_formateada ?></strong></td>
+                    <td><?php echo htmlspecialchars($vec["paciente_nombre"]) ?></td>
+                    <td><?php echo htmlspecialchars($vec["servicio_nombre"]) ?></td>
+                    
+                    <td><input type="text" class="input-tabla" placeholder="Añadir observaciones..." value="<?php echo htmlspecialchars($vec["notas"] ?? '') ?>" id="notas_<?php echo $vec["id"] ?>"></td>
+                    <td><button type="button" class="btn-tabla BotUP" idup="<?php echo $vec["id"] ?>">Guardar</button></td>
+                </tr>
+            <?php 
+            } 
+        }
         ?>
-            <tr>
-                <td><?php echo $hora_formateada ?></td>
-                <td><?php echo $vec["paciente_nombre"] ?></td>
-                <td><?php echo $vec["servicio_nombre"] ?></td>
-                
-                <td><input type="text" value="<?php echo htmlspecialchars($vec["notas"] ?? '') ?>" id="notas_<?php echo $vec["id"] ?>"></td>
-                <td><button type="button" class="BotUP" idup="<?php echo $vec["id"] ?>">Actualizar Notas</button></td>
-            </tr>
-        <?php } ?>
-        
+        </tbody>
     </table>
 </div>
 
