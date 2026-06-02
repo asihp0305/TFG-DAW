@@ -86,4 +86,26 @@ switch ($option) {
         }
         break;
 
+    case '6':
+        $id_usuario = $_SESSION['id']; // Obtenemos quién es desde la sesión, muy seguro
+        
+        $pass_antigua = filter_input(INPUT_POST, 'pass_antigua', FILTER_SANITIZE_SPECIAL_CHARS);
+        $pass_nueva = filter_input(INPUT_POST, 'pass_nueva', FILTER_SANITIZE_SPECIAL_CHARS);
+        
+        header('Content-Type: application/json');
+        
+        if($id_usuario && $pass_antigua && $pass_nueva) {
+            $resultado = $user->change_pass($id_usuario, $pass_nueva, $pass_antigua);
+            
+            if($resultado === true) {
+                echo json_encode(['status' => 'ok']);
+            } else if ($resultado === "incorrecta") {
+                echo json_encode(['status' => 'error', 'mensaje' => 'La contraseña actual es incorrecta.']);
+            } else {
+                echo json_encode(['status' => 'error', 'mensaje' => 'Error al actualizar en la base de datos.']);
+            }
+        } else {
+            echo json_encode(['status' => 'error', 'mensaje' => 'Faltan datos por completar.']);
+        }
+        break;
 }

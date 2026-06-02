@@ -19,14 +19,18 @@
             <a href="#">BIENVENIDOS</a><!-- link que lleva a la bienvenida -->
             <a href="#">QUIENES SOMOS</a><!-- link que lleva al apartado de quienes somos -->
         </div>
-        <div id="DVusuario">
-            <!-- hacer un if que en caso de que esté la sesion iniciada muestre el perfil del usuario o un boton para iniciar sesion -->
-             <?php 
+        <div id="DVusuario" class="dropdown-wrapper">
+            <?php 
                 if(isset($_SESSION["id"])){
-             ?>
-            <img src="Imagenes/icono_log.png" alt="Sesion iniciada" width="55px" border-radius= "50%">
-             <?php }else{?>
-            <button id="IniSesion">Iniciar sesión</button>
+            ?>
+                <img src="Imagenes/icono_log.png" alt="Sesion iniciada" class="avatar-dropdown" width="55px">
+                <div class="dropdown-content">
+                    <a href="perfil_usuario.php">Mi Portal</a>
+                    <a href="#" id="btn-cambiar-pass">Cambiar Contraseña</a>
+                    <a href="sec/log_out.php">Cerrar Sesión</a>
+                </div>
+            <?php }else{?>
+                    <a href="#" id="IniSesion">Iniciar Sesión</a>
             <?php }?>
         </div>
     </div>

@@ -192,5 +192,30 @@ class usuario{
 
     }
 
+
+    function change_pass($id_user,$pass_nueva,$pass_antigua){
+        include('../BBDD/BBDD.php');
+
+        $query_busqueda = 'SELECT password from usuarios where id = ? ';
+
+        $filt = $db->prepare($query_busqueda);
+        $filt->bind_param('i',$id_user);
+        $filt->execute();
+
+        $res = $filt->get_result();
+        $vec = $res->fetch_assoc();
+
+        if(password_verify($pass_antigua, $vec['password'])){
+            $has = password_hash($pass_nueva, PASSWORD_DEFAULT);
+
+            $query_act = 'UPDATE usuarios SET password = ? where id = ?';
+            $filt = $db->prepare($query_act);
+            $filt->bind_param('si',$has,$id_user);
+
+            return $filt->execute();
+        }else{
+            return 'incorrecta';
+        } 
+    }
 }
 ?>

@@ -172,3 +172,83 @@ background-color: rgb(47, 46, 46); /* Coincide con tu navbar, o usa #333 */
 #modalLogin button[type="submit"]:hover {
     background-color: #000 !important;
 }
+
+/* ==========================================================================
+   MENÚ DESPLEGABLE DE USUARIO (NAVBAR)
+   ========================================================================== */
+.dropdown-wrapper {
+    position: relative;
+    display: inline-block;
+    padding-top: 10px; /* Margen invisible para que no se cierre el hover al bajar el ratón */
+    padding-bottom: 10px;
+}
+
+
+/* Avatar de sesión iniciada */
+.avatar-dropdown {
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.avatar-dropdown:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* Contenedor de las opciones (Oculto por defecto) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0; /* Lo alinea a la derecha para que no se salga de la pantalla */
+    top: 100%; 
+    background-color: #ffffff;
+    min-width: 200px; /* Ancho de la caja */
+    box-shadow: 0px 10px 25px rgba(0,0,0,0.15);
+    border-radius: 8px;
+    z-index: 1000;
+    overflow: hidden;
+    border: 1px solid rgba(47, 46, 46, 0.1);
+}
+
+/* Enlaces dentro del menú desplegable */
+.dropdown-content a {
+    color: #333333;
+    padding: 14px 20px;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+    font-family: sans-serif;
+    font-weight: bold;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    transition: background-color 0.2s ease, padding-left 0.2s ease;
+}
+
+.dropdown-content a:last-child {
+    border-bottom: none; /* Quitamos la línea al último */
+}
+
+/* Efecto hover súper limpio en las opciones */
+.dropdown-content a:hover {
+    background-color: rgba(47, 46, 46, 0.05);
+    color: rgb(47, 46, 46);
+    padding-left: 25px; /* Pequeño desplazamiento animado */
+}
+
+/* Mostrar el menú cuando se hace hover sobre el wrapper */
+.dropdown-wrapper:hover .dropdown-content {
+    display: block;
+    animation: fadeInDropdown 0.3s ease;
+}
+
+/* Animación de caída */
+@keyframes fadeInDropdown {
+    from { 
+        opacity: 0; 
+        transform: translateY(-10px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
