@@ -35,4 +35,55 @@ switch ($option) {
         $user->crear_trabajador($nombre,$ape1,$ape2,$dni,$email,$especialidad);
 
         break;
+
+    case '3':
+        $dni = filter_input(INPUT_POST, 'dni', FILTER_SANITIZE_SPECIAL_CHARS);
+        
+        $paciente = $user->buscar_paciente($dni);
+
+        // Configuramos la cabecera para que el navegador sepa que es un JSON
+        header('Content-Type: application/json');
+
+        if($paciente){
+            echo json_encode([
+                'status'=>'ok',
+                'id_paciente'=>$paciente['id'],
+                'nombre_completo'=>$paciente['nombre']
+            ]);
+        }else{
+            echo json_encode(['status'=>'error']);
+        }
+        break;
+
+    case '4':
+        $id_cita = filter_input(INPUT_POST, 'id_serv', FILTER_SANITIZE_NUMBER_INT);
+
+        $doctores = $user->obtener_doctores($id_cita);
+
+        header('Content-Type: application/json');
+
+        if(!empty($doctores)){
+            echo json_encode([
+                'status'=>'ok',
+                'data'=> $doctores
+            ]);
+        }else{
+            echo json_encode(['status'=>'error']);
+        }
+        break;
+
+    case '5':
+        $fecha = filter_input(INPUT_POST,'fecha',FILTER_SANITIZE_SPECIAL_CHARS);
+        $hora = filter_input(INPUT_POST,'hora',FILTER_SANITIZE_SPECIAL_CHARS);
+
+        $auxiliares = $user->obtener_auxiliares_libres($fecha,$hora);
+
+        header('Content-Type: application/json');
+        if(!empty($auxiliares)){
+            echo json_encode(['status' => 'ok', 'datos' => $auxiliares]);
+        }else{
+            echo json_encode(['status' => 'error']);
+        }
+        break;
+
 }

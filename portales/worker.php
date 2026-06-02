@@ -1,5 +1,9 @@
 <?php
 require_once __DIR__ . '/../sec/security.php';
+if($_SESSION['rol'] != 'trabajador' && $_SESSION['rol'] != 'admin'){
+    echo "No tienes permisos para ver esto.";
+    exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -45,7 +49,7 @@ $(document).ready(function() {
     
     // Función de Salida
     $('#btn-logout').click(function() {
-        window.location.href = '../sec/log_out.php'; // Ruta corregida para salir desde /portales
+        window.location.href = 'sec/log_out.php'; // Ruta corregida para salir desde /portales
     });
 
     // Cargar Agenda

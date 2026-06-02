@@ -105,6 +105,92 @@ class usuario{
         $filt->close();
 
     }
-}
 
+    function buscar_paciente($dni){
+        include('../BBDD/BBDD.php');
+
+        $filt = $db->prepare(' SELECT id, nombre FROM pacientes where dni = ?');
+        $filt->bind_param('s',$dni);
+        $filt->execute();
+
+        $res = $filt->get_result();
+        
+        if($res->num_rows > 0){
+            return $res->fetch_assoc();
+        }else{
+            return false;
+        }
+    }
+
+    function obtener_doctores($servicio_id){
+        include('../BBDD/BBDD.php');
+
+        if($servicio_id == 1){
+            $query = 'SELECT id,nombre,especialidad FROM trabajadores WHERE especialidad = "auxiliar" ORDER BY nombre ASC';
+            $res = $db->query($query);
+            $doctores = [];
+            
+            if($res && $res->num_rows > 0){
+                while($row = $res->fetch_assoc()){
+                    $doctores[] = $row;
+                }
+            }
+        }else if($servicio_id == 4){
+            $query = 'SELECT id,nombre,especialidad FROM trabajadores WHERE especialidad = "pediatra" ORDER BY nombre ASC';
+            $res = $db->query($query);
+            $doctores = [];
+            
+            if($res && $res->num_rows > 0){
+                while($row = $res->fetch_assoc()){
+                    $doctores[] = $row;
+                }
+            }
+        }else{     
+            $query = 'SELECT id,nombre,especialidad FROM trabajadores WHERE especialidad = "cirujano" ORDER BY nombre ASC';
+            $res = $db->query($query);
+            $doctores = [];
+            
+            if($res && $res->num_rows > 0){
+                while($row = $res->fetch_assoc()){
+                    $doctores[] = $row;
+                }
+            }
+        }
+
+        return $doctores;
+    }
+
+    function obtener_auxiliares_libres($fecha, $hora){
+        include('../BBDD/BBDD.php');
+
+        $query = "
+            SELECT id, nombre
+            FROM trabajadores 
+            WHERE especialidad = 'auxiliar' 
+            AND id NOT IN (
+                SELECT auxiliar_id 
+                FROM citas 
+                WHERE fecha = ? AND hora_inicio = ? AND estado != 'cancelada'
+                AND auxiliar_id IS NOT NULL
+            )
+        ";
+        // Formateamos la hora para asegurarnos de que encaja con el formato de la BD
+        $hora_formateada = $hora. ':00';
+
+        $filt = $db->prepare($query);
+        $filt->bind_param('ss',$fecha,$hora_formateada);
+        $filt->execute();
+
+        $res = $filt->get_result();
+
+        $auxiliares = [];
+        while($row = $res->fetch_assoc()){
+            $auxiliares[] = $row;
+        }
+
+        return $auxiliares;
+
+    }
+
+}
 ?>

@@ -1,6 +1,9 @@
 <?php
 require_once __DIR__ . '/../sec/security.php';
-if($_SESSION['rol'] == 'trabajador' || $_SESSION['rol'] == 'admin'){
+if($_SESSION['rol'] != 'trabajador' && $_SESSION['rol'] != 'admin'){
+    echo "No tienes permisos para ver esto.";
+    exit;
+}
 ?>
 
 <div class="form-container" id="altaPacienteContenedor">
@@ -97,4 +100,3 @@ $(document).ready(function() {
     });
 });
 </script>
-<?php } ?>
