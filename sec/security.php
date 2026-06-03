@@ -21,7 +21,7 @@ else if (isset($_POST["user"]) && isset($_POST["password"])) {
     $vec = $res->fetch_assoc();
 
     if (!password_verify($pass, $vec['password'])) {
-        header("Location: http://{$_SERVER['HTTP_HOST']}/Malpartida-Dental/index.php");
+        header("Location: http://{$_SERVER['HTTP_HOST']}/index.php");
         exit;
     } else {
         $_SESSION["id"] = $vec["id"];
@@ -54,7 +54,7 @@ else if (isset($_POST["user"]) && isset($_POST["password"])) {
         date_default_timezone_set('Europe/Madrid');
     }
 } else {
-    header("Location: http://{$_SERVER['HTTP_HOST']}/Malpartida-Dental/vistas/login.php");
+    header("Location: http://{$_SERVER['HTTP_HOST']}/vistas/login.php");
     exit;
 }
     ?>
