@@ -1,2 +1,2 @@
 # TFG-DAW
-Para el TFG de DAW vamos a desarrollar una página web para la clínica Malpartida Dental
+MVP para la clinica deental Malpartida dental con software interno de gestion de citas
